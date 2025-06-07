@@ -1,175 +1,144 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
-} from "lucide-react"
+  IconHelp,
+  IconInnerShadowTop,
+  IconReport,
+  IconSearch,
+  IconSettings,
+  IconSchool,
+  IconClipboardSearch,
+  IconBooks,
+  IconBriefcase2,
+  IconHistory,
+  IconChefHat,
+  IconClipboardData,
+  IconQuestionMark,
+} from "@tabler/icons-react";
 
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
+import { NavLearning } from "@/components/nav-learning";
+import { NavJobs } from "@/components/nav-jobs";
+import { NavMain } from "@/components/nav-main";
+import { NavAssessment } from "@/components/nav-assessment";
+import { NavSecondary } from "@/components/nav-secondary";
+import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-  SidebarRail,
-} from "@/components/ui/sidebar"
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar";
 
-// This is sample data.
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "shloku rehman",
+    email: "shlokurehman@slayqueen.com",
+    avatar:
+      "https://cdn.discordapp.com/attachments/608711490223996995/1377200085238026281/cb9611be8f9280ac2a776512b2fd26ba.jpg?ex=68454807&is=6843f687&hm=441726a1d940d079df14da7832c8417ddfadb63d4ca0cbc2eee0da2d6aefe752&",
   },
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
-  ],
-  navMain: [
-    {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
+  navMain: [],
+  navSecondary: [
     {
       title: "Settings",
       url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
+      icon: IconSettings,
+    },
+    {
+      title: "Get Help",
+      url: "#",
+      icon: IconHelp,
+    },
+    {
+      title: "Search",
+      url: "#",
+      icon: IconSearch,
     },
   ],
-  projects: [
+  learning: [
     {
-      name: "Design Engineering",
+      name: "Recommended Courses",
       url: "#",
-      icon: Frame,
+      icon: IconClipboardSearch,
     },
     {
-      name: "Sales & Marketing",
+      name: "My Courses",
       url: "#",
-      icon: PieChart,
+      icon: IconBooks,
     },
     {
-      name: "Travel",
+      name: "Completed Courses",
       url: "#",
-      icon: Map,
+      icon: IconSchool,
     },
   ],
-}
+  jobs: [
+    {
+      name: "Matched Jobs",
+      url: "#",
+      icon: IconBriefcase2,
+    },
+    {
+      name: "My Applicatons",
+      url: "#",
+      icon: IconReport,
+    },
+    {
+      name: "Application History",
+      url: "#",
+      icon: IconHistory,
+    },
+  ],
+  assessment: [
+    {
+      name: "Questionnaire",
+      url: "#",
+      icon: IconQuestionMark,
+    },
+    {
+      name: "My Report",
+      url: "#",
+      icon: IconClipboardData,
+    },
+    {
+      name: "Suggested Skills",
+      url: "#",
+      icon: IconChefHat,
+    },
+  ],
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              asChild
+              className="data-[slot=sidebar-menu-button]:!p-1.5 "
+            >
+              <a href="#">
+                <IconInnerShadowTop className="!size-5" />
+                <span className="text-base font-semibold">SuccessHers</span>
+              </a>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <NavLearning items={data.learning} />
+        <NavJobs items={data.jobs} />
+        <NavAssessment items={data.assessment} />
+        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
       </SidebarFooter>
-      <SidebarRail />
     </Sidebar>
-  )
+  );
 }
