@@ -112,6 +112,14 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+.neon {
+  color: #fff0fb;
+  text-shadow: 0 0 5px #ff4dd2, 0 0 10px #ff4dd2, 0 0 20px #ff4dd2,
+    0 0 40px #ff1ab3, 0 0 80px #ff1ab3;
+  font-weight: bold;
+  background-color: transparent;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

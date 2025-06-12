@@ -17,7 +17,7 @@ export function SectionCards() {
         <CardHeader>
           <CardDescription>Total Active Days</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            $1,250.00
+            93
           </CardTitle>
           <CardAction>
             <Badge variant="outline">
@@ -61,7 +61,7 @@ export function SectionCards() {
         <CardHeader>
           <CardDescription>Courses Completed</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            45,678
+            6
           </CardTitle>
           <CardAction>
             <Badge variant="outline">
@@ -81,7 +81,7 @@ export function SectionCards() {
         <CardHeader>
           <CardDescription>Applications Submitted</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            4.5%
+            24
           </CardTitle>
           <CardAction>
             <Badge variant="outline">

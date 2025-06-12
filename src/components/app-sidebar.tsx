@@ -58,6 +58,40 @@ const data = {
       icon: IconSearch,
     },
   ],
+  jobs: [
+    {
+      name: "Matched Companies",
+      url: "/dashboard/jobs/matched",
+      icon: IconBriefcase2,
+    },
+    {
+      name: "My Applicatons",
+      url: "/dashboard/jobs/applications",
+      icon: IconReport,
+    },
+    {
+      name: "Application History",
+      url: "/dashboard/jobs/history",
+      icon: IconHistory,
+    },
+  ],
+  assessment: [
+    {
+      name: "Questionnaire",
+      url: "/dashboard/assessment/questionnare",
+      icon: IconQuestionMark,
+    },
+    {
+      name: "My Report",
+      url: "/dashboard/assessment/report",
+      icon: IconClipboardData,
+    },
+    {
+      name: "Suggested Skills",
+      url: "#",
+      icon: IconChefHat,
+    },
+  ],
   learning: [
     {
       name: "Recommended Courses",
@@ -73,40 +107,6 @@ const data = {
       name: "Completed Courses",
       url: "#",
       icon: IconSchool,
-    },
-  ],
-  jobs: [
-    {
-      name: "Matched Jobs",
-      url: "#",
-      icon: IconBriefcase2,
-    },
-    {
-      name: "My Applicatons",
-      url: "#",
-      icon: IconReport,
-    },
-    {
-      name: "Application History",
-      url: "#",
-      icon: IconHistory,
-    },
-  ],
-  assessment: [
-    {
-      name: "Questionnaire",
-      url: "#",
-      icon: IconQuestionMark,
-    },
-    {
-      name: "My Report",
-      url: "#",
-      icon: IconClipboardData,
-    },
-    {
-      name: "Suggested Skills",
-      url: "#",
-      icon: IconChefHat,
     },
   ],
 };
@@ -131,9 +131,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavLearning items={data.learning} />
         <NavJobs items={data.jobs} />
         <NavAssessment items={data.assessment} />
+        <NavLearning items={data.learning} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
