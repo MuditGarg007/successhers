@@ -7,7 +7,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Users, Percent} from "lucide-react";
+import { MapPin, Users, Percent } from "lucide-react";
 
 interface CompanyCardProps {
   name: string;
@@ -32,9 +32,8 @@ export default function CompanyCard({
   isRemote,
   industry,
 }: CompanyCardProps) {
-
   return (
-    <Card className="w-full max-w-md rounded-2xl shadow-md border cursor-pointer hover:shadow-lg transition-shadow duration-200 ease-in-out">
+    <Card className="bg-gradient-to-tr from-pink-400/30 backdrop-blur-mdtext-card-foreground w-full max-w-md rounded-2xl shadow-md border cursor-pointer hover:from-pink-400/40 shadow-lg transition-shadow duration-200 ease-in-out">
       <CardHeader className="flex items-center gap-4">
         <img
           src={logoUrl}
@@ -43,14 +42,14 @@ export default function CompanyCard({
         />
         <div>
           <CardTitle className="text-3xl">{name}</CardTitle>
-    
         </div>
       </CardHeader>
 
       <CardContent className="space-y-3">
         <div className="flex items-center text-sm gap-2">
-        <Percent className="w-4 h-4" />
-        <span className="text-primary font-medium">{matchPercent}%</span>{" "}Skill Match
+          <Percent className="w-4 h-4" />
+          <span className="text-primary font-medium">{matchPercent}%</span>{" "}
+          Skill Match
         </div>
         <div className="flex items-center text-sm gap-2">
           <Users className="w-4 h-4" />
@@ -58,11 +57,12 @@ export default function CompanyCard({
         </div>
         <div className="flex items-center text-sm gap-2">
           <MapPin className="w-4 h-4" />
-          <span>{location} • {isRemote ? "Remote-Friendly" : "On-Site"}</span>
+          <span>
+            {location} • {isRemote ? "Remote-Friendly" : "On-Site"}
+          </span>
         </div>
         <div className="text-sm">
-          <strong>Matched Roles:</strong>{" "}
-          {roles.slice(0, 3).join(", ")}
+          <strong>Matched Roles:</strong> {roles.slice(0, 3).join(", ")}
         </div>
         <div className="flex flex-wrap gap-1">
           {tags.map((tag, i) => (
