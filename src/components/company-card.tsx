@@ -30,7 +30,6 @@ export default function CompanyCard({
   maternity,
   onClick
 }: CompanyCardProps) {
-
   return (
     <Card onClick={onClick} className="bg-card text-primary font-semibold w-full max-w-md rounded-2xl shadow-md border cursor-pointer hover:shadow-lg transition-shadow duration-200 ease-in-out">
       <CardHeader className="flex items-center gap-4">
@@ -41,7 +40,6 @@ export default function CompanyCard({
         />
         <div>
           <CardTitle className="text-3xl">{name}</CardTitle>
-    
         </div>
       </CardHeader>
 

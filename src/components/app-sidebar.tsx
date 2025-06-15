@@ -4,6 +4,7 @@ import * as React from "react";
 import {
   IconHelp,
   IconInnerShadowTop,
+  IconRocket,
   IconReport,
   IconSearch,
   IconSettings,
@@ -35,10 +36,10 @@ import {
 
 const data = {
   user: {
-    name: "shloku rehman",
-    email: "shlokurehman@slayqueen.com",
+    name: "Ananya",
+    email: "ananya.slayqueen@gmail.com",
     avatar:
-      "https://cdn.discordapp.com/attachments/608711490223996995/1377200085238026281/cb9611be8f9280ac2a776512b2fd26ba.jpg?ex=68454807&is=6843f687&hm=441726a1d940d079df14da7832c8417ddfadb63d4ca0cbc2eee0da2d6aefe752&",
+      "https://cdn.discordapp.com/attachments/608711474952798221/1380397584606302228/IMG_8385.jpg?ex=684eefae&is=684d9e2e&hm=e221fbb0cbe02d8231694a8e8da34b47b571d0f7db31615238b71bbd0f97d95f&",
   },
   navMain: [],
   navSecondary: [
@@ -94,18 +95,18 @@ const data = {
   ],
   learning: [
     {
-      name: "Recommended Courses",
-      url: "#",
-      icon: IconClipboardSearch,
+      name: "Kirti AI",
+      url: "/dashboard/learning/kirti",
+      icon: IconRocket,
     },
     {
       name: "My Courses",
-      url: "#",
+      url: "/dashboard/learning/my-courses",
       icon: IconBooks,
     },
     {
       name: "Completed Courses",
-      url: "#",
+      url: "/dashboard/learning/completed",
       icon: IconSchool,
     },
   ],
@@ -117,15 +118,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton
+            {/* <SidebarMenuButton
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5 "
-            >
-              <a href="#">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">SuccessHers</span>
-              </a>
-            </SidebarMenuButton>
+            > */}
+
+            <a href="#">
+              <div className="flex">
+                <img src="/images/logo.png" className="w-[2rem]" />
+                <span className="text-xl font-bold mx-3">
+                  <span>Success</span>
+                  <span className="text-[#ee1e7e]">Hers</span>
+                </span>
+              </div>
+            </a>
+
+            {/* </SidebarMenuButton> */}
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>

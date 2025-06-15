@@ -1,7 +1,7 @@
 function Page() {
   return (
     <div>
-      <h1>Recommended</h1>
+      <h1>Kirti</h1>
     </div>
   );
 }
