@@ -120,6 +120,56 @@
   background-color: transparent;
 }
 
+.neon-icon {
+  fill: #ffb3e6;
+  filter: drop-shadow(0 0 2px #ff4dd2)
+          drop-shadow(0 0 4px #ff1ab3);
+}
+
+/* .bg-card {
+  @apply bg-gradient-to-tr from-pink-500/30 to-transparent hover:from-pink-500/40;
+   border: 1px solid rgba(255, 255, 255, 0.3);
+} */
+
+/* .bg-card {
+ @apply bg-gradient-to-tr 
+         from-[#ff77e9]/30 via-[#ff4ecd]/20 to-[#ffc0f3]/10 
+         hover:from-[#ff77e9]/50 hover:via-[#ff4ecd]/30 hover:to-[#ffc0f3]/20
+         transition-all duration-300 
+         backdrop-blur-md 
+         border border-pink-300/10;
+@apply hover:shadow-[0_0_20px_2px_rgba(255,78,205,0.2)];
+} */
+
+
+/* .bg-card {
+ @apply bg-gradient-to-tr 
+         from-[#ff77e9]/60 via-[#ff4ecd]/40 to-[#ffb0eb]/30 
+         hover:from-[#ff77e9]/80 hover:via-[#ff4ecd]/60 hover:to-[#ffb0eb]/40
+         transition-all duration-300 
+         backdrop-blur-lg 
+         border border-pink-400/20 
+         shadow-lg;
+ @apply hover:shadow-[0_0_30px_6px_rgba(255,119,233,0.3)];
+} */
+
+
+.bg-card {
+  @apply bg-gradient-to-tr 
+         from-[#C53678]/40 to-transparent
+         hover:from-[#C53678]/60 hover:to-transparent
+         backdrop-blur-md 
+         border border-pink-400/10 
+         transition-all duration-300;
+}
+
+
+/* .bg-btn {
+  @apply bg-gradient-to-tr from-white/30 to-transparent
+} */
+
+
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

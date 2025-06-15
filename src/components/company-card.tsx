@@ -7,34 +7,32 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Users, Percent} from "lucide-react";
+import { MapPin, Users, BriefcaseBusiness, Crown} from "lucide-react";
 
-interface CompanyCardProps {
+export interface CompanyCardProps {
   name: string;
   logoUrl: string;
-  matchPercent: number;
-  womenInTech: number;
-  location: string;
-  roles: string[];
-  tags?: string[];
-  isRemote: boolean;
-  industry: string;
+  womenInLeadership: number;
+  womenInBoard: number;
+  womenEmployed: number;
+  remote: boolean;
+  maternity: boolean;
+  onClick?: () => void; // optional click handler
 }
 
 export default function CompanyCard({
   name,
   logoUrl,
-  matchPercent,
-  womenInTech,
-  location,
-  roles,
-  tags = [],
-  isRemote,
-  industry,
+  womenInLeadership,
+  womenInBoard,
+  womenEmployed,
+  remote,
+  maternity,
+  onClick
 }: CompanyCardProps) {
 
   return (
-    <Card className="w-full max-w-md rounded-2xl shadow-md border cursor-pointer hover:shadow-lg transition-shadow duration-200 ease-in-out">
+    <Card onClick={onClick} className="bg-card text-primary font-semibold w-full max-w-md rounded-2xl shadow-md border cursor-pointer hover:shadow-lg transition-shadow duration-200 ease-in-out">
       <CardHeader className="flex items-center gap-4">
         <img
           src={logoUrl}
@@ -48,29 +46,58 @@ export default function CompanyCard({
       </CardHeader>
 
       <CardContent className="space-y-3">
-        <div className="flex items-center text-sm gap-2">
-        <Percent className="w-4 h-4" />
-        <span className="text-primary font-medium">{matchPercent}%</span>{" "}Skill Match
+        <div className="flex items-center text-md gap-2">
+          <Crown className="w-4 h-4" />
+        <span className="text-primary font-medium">{womenInLeadership}%</span>Women in Leadership
         </div>
-        <div className="flex items-center text-sm gap-2">
+        <div className="flex items-center text-md gap-2">
+          <BriefcaseBusiness className="w-4 h-4"/>
+          <span>{womenEmployed}% Women Employed</span>
+        </div>
+        <div className="flex items-center text-md gap-2">
           <Users className="w-4 h-4" />
-          <span>{womenInTech}% Women in Tech</span>
+          <span>{womenInBoard}% Women Board Members</span>
         </div>
-        <div className="flex items-center text-sm gap-2">
-          <MapPin className="w-4 h-4" />
-          <span>{location} • {isRemote ? "Remote-Friendly" : "On-Site"}</span>
-        </div>
-        <div className="text-sm">
-          <strong>Matched Roles:</strong>{" "}
-          {roles.slice(0, 3).join(", ")}
-        </div>
-        <div className="flex flex-wrap gap-1">
-          {tags.map((tag, i) => (
-            <Badge key={i} variant="outline">
-              {tag}
+        
+          {/* <MapPin className="w-4 h-4" /> */}
+          
+        
+        {/* <div className="flex flex-wrap items-center gap-2 ">
+            {remote ? (
+            <Badge variant="outline" className="bg-gradient-to-tr from-green-500/50 text-sm font-medium">
+              Remote Friendly
             </Badge>
-          ))}
+            ) : ( 
+            <Badge variant="outline" className="bg-gradient-to-tr from-red-500/50 text-sm font-medium">
+              Not Remote Friendly
+            </Badge>
+            )}
+        
+       {maternity ? (
+            <Badge variant="outline" className="bg-gradient-to-tr from-green-500/50 text-sm font-medium"> 
+              Maternity Leave Offered
+            </Badge>
+            ) : ( 
+            <Badge variant="outline" className="bg-gradient-to-tr from-red-500/50 text-sm font-medium">
+              No Maternity Leave Offered
+            </Badge>
+            )}
+        </div> */}
+
+<div className="flex flex-wrap items-center gap-2 ">
+            {remote && (
+            <Badge variant="outline" className=" text-md font-medium bg-btn">
+              Remote Friendly
+            </Badge>
+            ) }
+        
+       {maternity && (
+            <Badge variant="outline" className="text-md font-medium bg-btn"> 
+              Maternity
+            </Badge>
+            )}
         </div>
+
       </CardContent>
     </Card>
   );
