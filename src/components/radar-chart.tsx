@@ -21,12 +21,12 @@ import {
 export const description = "A radar chart with dots";
 
 const chartData = [
-  { month: "January", desktop: 186 },
-  { month: "February", desktop: 305 },
-  { month: "March", desktop: 237 },
-  { month: "April", desktop: 273 },
-  { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
+  { month: "Proficiency", desktop: 186 },
+  { month: "Soft skills", desktop: 305 },
+  { month: "Activity", desktop: 237 },
+  { month: "Networking", desktop: 273 },
+  { month: "Profile", desktop: 209 },
+  { month: "Confidence", desktop: 214 },
 ];
 
 const chartConfig = {
@@ -46,7 +46,7 @@ export function ChartRadarDots() {
         >
           <RadarChart
             data={chartData}
-            margin={{ top: 0, right: 50, bottom: 0, left: 20 }}
+            margin={{ top: 0, right: 35, bottom: 0, left: 70 }}
           >
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
             <PolarAngleAxis dataKey="month" tick={{ fontSize: 12 }} />

@@ -1,7 +1,9 @@
+import { Questionnare } from "@/components/questionnare";
+
 function Page() {
   return (
-    <div>
-      <h1>Questionnare</h1>
+    <div className="mb-10 mt-5">
+      <Questionnare />
     </div>
   );
 }
