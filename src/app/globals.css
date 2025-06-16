@@ -119,6 +119,13 @@
   font-weight: bold;
   background-color: transparent;
 } */
+.kirti-chat-window {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+.kirti-chat-window::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
 
 @layer base {
   * {
