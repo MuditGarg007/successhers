@@ -1,7 +1,7 @@
 function Page() {
   return (
     <div>
-      <h1>Server is running</h1>
+      <h1>Server is running!!</h1>
     </div>
   );
 }
