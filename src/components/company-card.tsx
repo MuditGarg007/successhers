@@ -8,10 +8,10 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Users, BriefcaseBusiness, Crown} from "lucide-react";
+import CompanyLogo from "@/components/CompanyLogo";
 
 export interface CompanyCardProps {
   name: string;
-  logoUrl: string;
   womenInLeadership: number;
   womenInBoard: number;
   womenEmployed: number;
@@ -22,7 +22,6 @@ export interface CompanyCardProps {
 
 export default function CompanyCard({
   name,
-  logoUrl,
   womenInLeadership,
   womenInBoard,
   womenEmployed,
@@ -33,11 +32,7 @@ export default function CompanyCard({
   return (
     <Card onClick={onClick} className="bg-card text-primary font-semibold w-full max-w-md rounded-2xl shadow-md border cursor-pointer hover:shadow-lg transition-shadow duration-200 ease-in-out">
       <CardHeader className="flex items-center gap-4">
-        <img
-          src={logoUrl}
-          alt={`${name} logo`}
-          className="w-12 h-12 rounded-md object-cover"
-        />
+        <CompanyLogo name={name} className="h-14 w-14"/>
         <div>
           <CardTitle className="text-3xl">{name}</CardTitle>
         </div>
