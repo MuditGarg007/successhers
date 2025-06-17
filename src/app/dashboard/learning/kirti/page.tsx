@@ -1,7 +1,9 @@
+import KirtiAI from "@/components/kirti-ai";
+
 function Page() {
   return (
     <div>
-      <h1>Kirti</h1>
+      <KirtiAI />
     </div>
   );
 }
