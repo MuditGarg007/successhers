@@ -17,6 +17,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useUser } from "@/context/UserContext";
+import { useRouter } from "next/navigation";
 
 const jobInterestItems = [
   { id: "technology", label: "Technology / IT" },
@@ -41,6 +43,7 @@ const goalItems = [
 
 const formSchema = z.object({
   name: z.string(),
+  email: z.string().email("Please enter a valid email address."),
   education: z.string(),
   experience: z.string(),
   interest: z.string(),
@@ -60,17 +63,30 @@ const formSchema = z.object({
 });
 
 export function Questionnare() {
+  const { setName, setEmail } = useUser();
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      name: "",
+      email: "",
+      education: "",
+      experience: "",
+      interest: "",
+      skills: "",
+      hours: "",
+      goal: "",
       jobInterests: [],
+      otherJobInterest: "",
       hoursPerWeek: "",
       currentGoal: "",
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    setName(values.name);
+    setEmail(values.email);
+    router.push("/dashboard");
   }
 
   return (
@@ -89,6 +105,24 @@ export function Questionnare() {
                 <FormControl>
                   <Input
                     placeholder="Enter your full name"
+                    {...field}
+                    className="w-100"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email Address</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Enter your email address"
                     {...field}
                     className="w-100"
                   />

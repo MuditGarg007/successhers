@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
           messages: [
             {
               role: 'user',
-              content: 'Make me a resume for a software engineer position. Make it in a bullet point manner. Include diverse skills + different programming languages. There should be plenty of numbers and metrics to show impact. Make it concise',
+              content: 'I will give you information about a candidate from ',
             },
           ],
         };

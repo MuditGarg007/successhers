@@ -8,40 +8,107 @@ interface Message {
   text: string;
 }
 
+const SYSTEM_PROMPT =
+  "You're an AI assistant named Kirti under this project that's made to help women addressing questions related to learning, advancing their career, or receiving guidance. Make sure you use context from previous messages to better address their equations and often relate back to previous messages. Any messages other than addressing their career, such as 'what do you like' should be ignored.";
+
 const KirtiAI: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     { sender: "bot", text: "Hi! I am Kirti AI. How can I help you today?" },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [sessionId, setSessionId] = useState<string | null>(null);
   const chatEndRef = useRef<HTMLDivElement | null>(null);
+
+  // Set sessionId only on client
+  useEffect(() => {
+    let id = localStorage.getItem("sessionId");
+    if (!id) {
+      id = crypto.randomUUID();
+      localStorage.setItem("sessionId", id);
+    }
+    setSessionId(id);
+  }, []);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   const handleSend = async () => {
-    if (!input.trim()) return;
+    if (!input.trim() || !sessionId) return;
     const userMessage = { sender: "user", text: input } as const;
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setLoading(true);
 
-    // Mock AI response (replace with real API call)
-    setTimeout(() => {
-      const botMessage = {
-        sender: "bot",
-        text: `You said: "${userMessage.text}" (This is a mock response.)`,
-      } as const;
-      setMessages((prev) => [...prev, botMessage]);
-      setLoading(false);
-    }, 1200);
+    try {
+      // Gather previous messages for context (excluding the initial greeting)
+      const prevUserAndBot = messages
+        .slice(1)
+        .map((msg) => ({
+          role: msg.sender === "user" ? "user" : "assistant",
+          content: msg.text,
+        }));
+
+      const payload = {
+        sessionId,
+        model: "meta-llama/llama-3.3-8b-instruct:free",
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT },
+          ...prevUserAndBot,
+          { role: "user", content: userMessage.text },
+        ],
+      };
+
+      const res = await fetch("/api/chatbot", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      const botText =
+        data.choices?.[0]?.message?.content ||
+        data.error ||
+        "Sorry, I couldn't get a response.";
+      setMessages((prev) => [
+        ...prev,
+        { sender: "bot", text: botText },
+      ]);
+    } catch (err) {
+      setMessages((prev) => [
+        ...prev,
+        { sender: "bot", text: "Error fetching response." },
+      ]);
+    }
+    setLoading(false);
   };
 
   const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       handleSend();
     }
+  };
+
+  const handleReset = async () => {
+    if (!sessionId) return;
+    setLoading(true);
+    try {
+      await fetch("/api/chatbot/reset", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId }),
+      });
+      setMessages([
+        { sender: "bot", text: "Hi! I am Kirti AI. How can I help you today?" },
+        { sender: "bot", text: "Conversation reset." },
+      ]);
+    } catch {
+      setMessages([
+        { sender: "bot", text: "Hi! I am Kirti AI. How can I help you today?" },
+        { sender: "bot", text: "Failed to reset conversation." },
+      ]);
+    }
+    setLoading(false);
   };
 
   return (
@@ -75,14 +142,21 @@ const KirtiAI: React.FC = () => {
           onKeyDown={handleInputKeyDown}
           style={styles.input}
           placeholder="Type your message..."
-          disabled={loading}
+          disabled={loading || !sessionId}
         />
         <button
           onClick={handleSend}
           style={styles.sendButton}
-          disabled={loading || !input.trim()}
+          disabled={loading || !input.trim() || !sessionId}
         >
           <IconSend />
+        </button>
+        <button
+          onClick={handleReset}
+          style={styles.resetButton}
+          disabled={loading || !sessionId}
+        >
+          Reset
         </button>
       </div>
     </div>
@@ -159,6 +233,20 @@ const styles: { [key: string]: React.CSSProperties } = {
     cursor: "pointer",
     transition: "background 0.2s",
     height: 40,
+    boxShadow: "0 1px 2px rgba(0,0,0,0.03)",
+  },
+  resetButton: {
+    padding: "8px 16px",
+    borderRadius: 9999,
+    border: "none",
+    background: "#e11d48",
+    color: "#fff",
+    fontWeight: 600,
+    fontSize: 15,
+    cursor: "pointer",
+    transition: "background 0.2s",
+    height: 40,
+    marginLeft: 8,
     boxShadow: "0 1px 2px rgba(0,0,0,0.03)",
   },
 };
