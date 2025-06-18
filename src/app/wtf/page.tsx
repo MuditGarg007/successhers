@@ -9,7 +9,7 @@ export default function Page() {
   async function handleShowRequest() {
     const url = "https://openrouter.ai/api/v1/auth/key";
     const headers = {
-      Authorization: "Bearer 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",
+      Authorization: "Bearer ${process.env.NEXT_PUBLIC_OPENROUTER_API_TOKEN}",
     };
 
     // Display the request details
