@@ -76,7 +76,19 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+ 
+
+  /* pink colors for pie chart */
+--pink-light: #ff87d3;     
+--pink-mid: #ff3cac;      
+--pink-deep: #9f0d7f;      
+
 }
+
+
+
+
+
 
 .dark {
   --background: oklch(0.145 0 0);
@@ -112,12 +124,36 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-/* .neon {
+.neon {
   color: #ff1ab3;
   text-shadow: 0 0 5px #ff4dd2, 0 0 10px #ff4dd2, 0 0 20px #ff4dd2,
     0 0 40px #ff1ab3, 0 0 80px #ff1ab3;
   font-weight: bold;
   background-color: transparent;
+}
+
+.neon-icon {
+  fill: #ffb3e6;
+  filter: drop-shadow(0 0 2px #ff4dd2)
+          drop-shadow(0 0 4px #ff1ab3);
+}
+
+
+.detailelCard-bg {
+
+  background: rgba(255, 119, 233, 0.04);       
+  backdrop-filter: blur(12px);                
+  -webkit-backdrop-filter: blur(12px);        
+  border: 1px solid rgba(255, 119, 233, 0.1);  
+  border-radius: 1rem;                        
+  box-shadow: 0 4px 24px rgba(255, 119, 233, 0.03); 
+  
+}
+
+
+/* .bg-card {
+  @apply bg-gradient-to-tr from-pink-500/30 to-transparent hover:from-pink-500/40;
+   border: 1px solid rgba(255, 255, 255, 0.3);
 } */
 .kirti-chat-window {
   scrollbar-width: none; /* Firefox */
@@ -126,6 +162,51 @@
 .kirti-chat-window::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
+
+
+.bg-card {
+  background: linear-gradient(to top right, rgba(255, 119, 233, 0.3), transparent);
+  border: 1px solid rgba(255, 119, 233, 0.08); 
+}
+
+/* .bg-card {
+ @apply bg-gradient-to-tr 
+         from-[#ff77e9]/30 via-[#ff4ecd]/20 to-[#ffc0f3]/10 
+         hover:from-[#ff77e9]/50 hover:via-[#ff4ecd]/30 hover:to-[#ffc0f3]/20
+         transition-all duration-300 
+         backdrop-blur-md 
+         border border-pink-300/10;
+@apply hover:shadow-[0_0_20px_2px_rgba(255,78,205,0.2)];
+} */
+
+
+/* .bg-card {
+ @apply bg-gradient-to-tr 
+         from-[#ff77e9]/60 via-[#ff4ecd]/40 to-[#ffb0eb]/30 
+         hover:from-[#ff77e9]/80 hover:via-[#ff4ecd]/60 hover:to-[#ffb0eb]/40
+         transition-all duration-300 
+         backdrop-blur-lg 
+         border border-pink-400/20 
+         shadow-lg;
+ @apply hover:shadow-[0_0_30px_6px_rgba(255,119,233,0.3)];
+} */
+
+/* 
+.bg-card {
+  @apply bg-gradient-to-tr 
+         from-[#C53678]/40 to-transparent
+         hover:from-[#C53678]/60 hover:to-transparent
+         backdrop-blur-md 
+         border border-pink-400/10 
+         transition-all duration-300;
+} */
+
+
+/* .bg-btn {
+  @apply bg-gradient-to-tr from-white/30 to-transparent
+} */
+
+
 
 @layer base {
   * {
