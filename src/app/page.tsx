@@ -28,7 +28,7 @@ const WelcomePage = () => {
           }}
           onClick={() => router.push('/dashboard')}
         >
-          Login as Ananya (test example)
+          Login as Test User
         </button>
         <button
           style={{
