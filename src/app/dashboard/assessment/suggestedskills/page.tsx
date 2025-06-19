@@ -46,7 +46,6 @@ function Page() {
 
   return (
     <div>
-      <h1>Suggested Skills</h1>
       {evaluation ? (
         <div className="mt-6">
           <div>

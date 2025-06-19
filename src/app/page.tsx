@@ -22,26 +22,11 @@ const WelcomePage = () => {
             fontSize: '1rem',
             borderRadius: '8px',
             border: 'none',
-            background: '#4f8cff',
-            color: '#fff',
-            cursor: 'pointer'
-          }}
-          onClick={() => router.push('/dashboard')}
-        >
-          Login as Test User
-        </button>
-        <button
-          style={{
-            padding: '1rem 2rem',
-            fontSize: '1rem',
-            borderRadius: '8px',
-            border: 'none',
             background: '#ff8c4f',
             color: '#fff',
             cursor: 'pointer'
           }}
-          onClick={() => router.push('/questionnare')}
-        >
+          onClick={() => router.push('/questionnare')}>
           Take an Evaluation
         </button>
       </div>

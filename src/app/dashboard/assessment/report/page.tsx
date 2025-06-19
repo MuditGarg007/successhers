@@ -39,7 +39,6 @@ function Page() {
 
   return (
     <div>
-      <h1>Report</h1>
       <div>
         <strong>Full Name:</strong> {questionnaire.name}
       </div>
