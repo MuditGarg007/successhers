@@ -65,8 +65,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     ],
     jobs: [
       {
-        name: "Matched Companies",
-        url: "/dashboard/jobs/matched",
+        name: "Company Finder",
+        url: "/dashboard/jobs/companyfinder",
         icon: IconBriefcase2,
       },
       {
