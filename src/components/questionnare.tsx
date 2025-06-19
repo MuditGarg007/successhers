@@ -64,7 +64,7 @@ const formSchema = z.object({
 });
 
 export function Questionnare() {
-  const { setName, setEmail, setQuestionnaire } = useUser();
+  const { setName, setEmail, setQuestionnaire, setUserSkills } = useUser();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -127,6 +127,26 @@ export function Questionnare() {
         }
       }
       localStorage.setItem("skillsEvaluation", JSON.stringify(evaluation));
+
+      // Extract skills from evaluation
+      let skills: string[] = [];
+      if (evaluation.skills) {
+        if (Array.isArray(evaluation.skills)) {
+          skills = evaluation.skills;
+        } else if (typeof evaluation.skills === "string") {
+          try {
+            const arr = JSON.parse(evaluation.skills);
+            if (Array.isArray(arr)) {
+              skills = arr;
+            } else {
+              skills = evaluation.skills.split(",").map((s: string) => s.trim());
+            }
+          } catch {
+            skills = evaluation.skills.split(",").map((s: string) => s.trim());
+          }
+        }
+      }
+      setUserSkills(skills);
 
       setLoading(false);
       router.push("/dashboard/assessment/suggestedskills");

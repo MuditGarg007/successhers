@@ -23,6 +23,8 @@ type UserContextType = {
   setEmail: (email: string) => void;
   questionnaire: QuestionnaireData | null;
   setQuestionnaire: (data: QuestionnaireData) => void;
+  userSkills: string[];
+  setUserSkills: (skills: string[]) => void;
 };
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -31,15 +33,18 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [questionnaire, setQuestionnaire] = useState<QuestionnaireData | null>(null);
+  const [userSkills, setUserSkills] = useState<string[]>([]);
 
   // Load from localStorage on mount
   useEffect(() => {
     const storedName = localStorage.getItem("userName");
     const storedEmail = localStorage.getItem("userEmail");
     const storedQuestionnaire = localStorage.getItem("userQuestionnaire");
+    const storedSkills = localStorage.getItem("userSkills");
     if (storedName) setName(storedName);
     if (storedEmail) setEmail(storedEmail);
     if (storedQuestionnaire) setQuestionnaire(JSON.parse(storedQuestionnaire));
+    if (storedSkills) setUserSkills(JSON.parse(storedSkills));
   }, []);
 
   // Save to localStorage on change
@@ -55,6 +60,10 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     setQuestionnaire(data);
     localStorage.setItem("userQuestionnaire", JSON.stringify(data));
   };
+  const handleSetUserSkills = (skills: string[]) => {
+    setUserSkills(skills);
+    localStorage.setItem("userSkills", JSON.stringify(skills));
+  };
 
   return (
     <UserContext.Provider
@@ -65,6 +74,8 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         setEmail: handleSetEmail,
         questionnaire,
         setQuestionnaire: handleSetQuestionnaire,
+        userSkills,
+        setUserSkills: handleSetUserSkills,
       }}
     >
       {children}
