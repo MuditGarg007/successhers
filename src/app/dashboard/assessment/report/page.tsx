@@ -30,7 +30,45 @@ const goalLabels: Record<string, string> = {
   restart: "Restart my career after a break",
 };
 
+("use client");
+
+import { useUser } from "@/context/UserContext";
+
+const experienceLabels: Record<string, string> = {
+  "0": "No experience",
+  "1": "Less than 1 year",
+  "2": "1–3 years",
+  "3": "3+ years",
+};
+
+const jobInterestLabels: Record<string, string> = {
+  technology: "Technology / IT",
+  design: "Design / Creativity",
+  teaching: "Teaching / Training",
+  business: "Business / Marketing",
+  health: "Health / Wellness",
+  other: "Other (please specify)",
+};
+
+const hoursPerWeekLabels: Record<string, string> = {
+  lt5: "Less than 5 hours",
+  "5to10": "5–10 hours",
+  gt10: "10+ hours",
+};
+
+const goalLabels: Record<string, string> = {
+  first_job: "Get my first job",
+  upskill: "Change my field / upskill",
+  restart: "Restart my career after a break",
+};
+
 function Page() {
+  const { questionnaire } = useUser();
+
+  if (!questionnaire) {
+    return <div>No questionnaire data found for this session.</div>;
+  }
+
   const { questionnaire } = useUser();
 
   if (!questionnaire) {

@@ -65,12 +65,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     ],
     jobs: [
       {
-        name: "Matched Companies",
-        url: "/dashboard/jobs/matched",
+        name: "Company Finder",
+        url: "/dashboard/jobs/companyfinder",
         icon: IconBriefcase2,
       },
       {
-        name: "My Applicatons",
+        name: "My Applications",
         url: "/dashboard/jobs/applications",
         icon: IconReport,
       },
@@ -102,11 +102,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         name: "My Courses",
         url: "/dashboard/learning/my-courses",
         icon: IconBooks,
-      },
-      {
-        name: "Completed Courses",
-        url: "/dashboard/learning/completed",
-        icon: IconSchool,
       },
     ],
   };

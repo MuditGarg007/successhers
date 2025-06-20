@@ -19,6 +19,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useUser } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const jobInterestItems = [
   { id: "technology", label: "Technology / IT" },
@@ -63,8 +64,11 @@ const formSchema = z.object({
 });
 
 export function Questionnare() {
-  const { setName, setEmail } = useUser();
+  const { setName, setEmail, setQuestionnaire, setUserSkills } = useUser();
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -83,10 +87,73 @@ export function Questionnare() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     setName(values.name);
     setEmail(values.email);
-    router.push("/dashboard");
+    setQuestionnaire(values);
+    setLoading(true);
+    setError(null);
+
+    try {
+      // Call the /api/skills route with the questionnaire data
+      const res = await fetch("/api/skills", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: JSON.stringify(values, null, 2) }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Failed to get evaluation.");
+        setLoading(false);
+        return;
+      }
+
+      // Try to parse the script as JSON
+      let evaluation = null;
+      try {
+        evaluation = JSON.parse(data.script);
+      } catch {
+        // Try to extract JSON from the string using RegExp
+        const match = data.script.match(/\{[\s\S]*\}/);
+        if (match) {
+          try {
+            evaluation = JSON.parse(match[0]);
+          } catch {
+            evaluation = { category: "Error", rationale: "Could not parse evaluation result." };
+          }
+        } else {
+          evaluation = { category: "Error", rationale: "Could not parse evaluation result." };
+        }
+      }
+      localStorage.setItem("skillsEvaluation", JSON.stringify(evaluation));
+
+      // Extract skills from evaluation
+      let skills: string[] = [];
+      if (evaluation.skills) {
+        if (Array.isArray(evaluation.skills)) {
+          skills = evaluation.skills;
+        } else if (typeof evaluation.skills === "string") {
+          try {
+            const arr = JSON.parse(evaluation.skills);
+            if (Array.isArray(arr)) {
+              skills = arr;
+            } else {
+              skills = evaluation.skills.split(",").map((s: string) => s.trim());
+            }
+          } catch {
+            skills = evaluation.skills.split(",").map((s: string) => s.trim());
+          }
+        }
+      }
+      setUserSkills(skills);
+
+      setLoading(false);
+      router.push("/dashboard/assessment/suggestedskills");
+    } catch (err) {
+      setError("Failed to get evaluation.");
+      setLoading(false);
+    }
   }
 
   return (
@@ -287,7 +354,10 @@ export function Questionnare() {
             )}
           />
 
-          <Button type="submit">Submit</Button>
+          <Button type="submit" disabled={loading}>
+            {loading ? "Evaluating..." : "Submit"}
+          </Button>
+          {error && <div className="text-red-500 mt-2">{error}</div>}
         </form>
       </Form>
     </div>

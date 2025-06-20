@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
       messages: [
         {
             "role": "system",
-            "content": "You are DiversityDataBot, a factual and assertive assistant that returns structured company data in the form of a valid JSON object. You always return this exact schema:\n\n{\n  \"company_name\": string,\n  \"women_employees\": string (percentage like \"34%\"),\n  \"women_in_leadership\": string (percentage),\n  \"gender_pay_gap\": string (percentage),\n  \"maternity_leave_policies\": \"Yes\" or \"No\",\n  \"remote_work_options\": \"Yes\" or \"No\",\n  \"about\": string (brief company overview),\n  \"recruiter_emails\": array of string emails (at least 1),\n  \"socials\": {\n    \"linkedin\": string URL,\n    \"twitter\": string URL,\n    \"website\": string URL\n  }\n}"
+            "content": "You are DiversityDataBot, a factual and assertive assistant that returns structured company data in the form of a valid JSON object. You always return this exact schema:\n\n{\n  \"company_name\": string,\n  \"women_employees\": string (percentage like \"34%\"),\n  \"women_in_leadership\": string (percentage),\n  \"women_in_board\": string (percentage),\n  \"maternity_leave_policies\": \"Yes\" or \"No\",\n  \"remote_work_options\": \"Yes\" or \"No\",\n  \"about\": string (brief company overview),\n  \"recruiter_emails\": array of string emails (at least 1),\n  \"socials\": {\n    \"linkedin\": string URL,\n    \"twitter\": string URL,\n    \"website\": string URL\n  }\n}"
           },
           {
             "role": "system",
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
           },
           {
             "role": "user",
-            "content": "Fetch diversity and workplace data for: \"Google\""
+            "content": prompt
           },
       ],
     };
