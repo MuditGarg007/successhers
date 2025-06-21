@@ -18,11 +18,11 @@ const jobInterestLabels: Record<string, string> = {
   other: "Other (please specify)",
 };
 
-const hoursPerWeekLabels: Record<string, string> = {
-  lt5: "Less than 5 hours",
-  "5to10": "5–10 hours",
-  gt10: "10+ hours",
-};
+// const hoursPerWeekLabels: Record<string, string> = {
+//   lt5: "Less than 5 hours",
+//   "5to10": "5–10 hours",
+//   gt10: "10+ hours",
+// };
 
 const goalLabels: Record<string, string> = {
   first_job: "Get my first job",
@@ -65,7 +65,7 @@ function Page() {
       </div>
       <div>
         <strong>Hours Per Week:</strong>{" "}
-        {hoursPerWeekLabels[questionnaire.hoursPerWeek] || "Not specified"}
+        {questionnaire.hoursPerWeek || "Not specified"}
       </div>
       <div>
         <strong>Current Goal:</strong>{" "}

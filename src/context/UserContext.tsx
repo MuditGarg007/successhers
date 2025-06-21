@@ -8,7 +8,6 @@ export type QuestionnaireData = {
   experience: string;
   interest: string;
   skills: string;
-  hours: string;
   goal: string;
   jobInterests: string[];
   otherJobInterest?: string;
@@ -32,7 +31,9 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export function UserProvider({ children }: { children: React.ReactNode }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [questionnaire, setQuestionnaire] = useState<QuestionnaireData | null>(null);
+  const [questionnaire, setQuestionnaire] = useState<QuestionnaireData | null>(
+    null
+  );
   const [userSkills, setUserSkills] = useState<string[]>([]);
 
   // Load from localStorage on mount
