@@ -1,11 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
+import EvaluationResult from "@/components/EvaluationResult";
 
-type Evaluation = {
-  category?: string;
-  rationale?: string;
-  skills?: string[] | string;
-};
+import {Evaluation} from "@/components/EvaluationResult";
 
 function Page() {
   const [evaluation, setEvaluation] = useState<Evaluation | null>(null);
@@ -38,40 +35,54 @@ function Page() {
           }
         }
         setEvaluation({ ...parsed, skills });
+        // console.log("evaluation:::", evaluation)
       } catch {
         setEvaluation({ category: "Error", rationale: "Could not parse evaluation result." });
       }
     }
   }, []);
 
-  return (
-    <div>
-      {evaluation ? (
-        <div className="mt-6">
-          <div>
-            <strong>Category:</strong> {evaluation.category}
-          </div>
-          <div>
-            <strong>Rationale:</strong> {evaluation.rationale}
-          </div>
-          <div>
-            <strong>Recommended Skills:</strong>
-            {evaluation.skills && Array.isArray(evaluation.skills) && evaluation.skills.length > 0 ? (
-              <ul className="list-disc ml-6">
-                {evaluation.skills.map((skill, idx) => (
-                  <li key={idx}>{skill}</li>
-                ))}
-              </ul>
-            ) : (
-              <span> None</span>
-            )}
-          </div>
-        </div>
-      ) : (
-        <div className="mt-6 text-gray-500">No evaluation found. Please complete the questionnaire.</div>
-      )}
-    </div>
-  );
+  // return (
+  //   <div>
+  //     {evaluation ? (
+  //       <div className="mt-6">
+  //         <div>
+  //           <strong>Category:</strong> {evaluation.category}
+  //         </div>
+  //         <div>
+  //           <strong>Rationale:</strong> {evaluation.rationale}
+  //         </div>
+  //         <div>
+  //           <strong>Recommended Skills:</strong>
+  //           {evaluation.skills && Array.isArray(evaluation.skills) && evaluation.skills.length > 0 ? (
+  //             <ul className="list-disc ml-6">
+  //               {evaluation.skills.map((skill, idx) => (
+  //                 <li key={idx}>{skill}</li>
+  //               ))}
+  //             </ul>
+  //           ) : (
+  //             <span> None</span>
+  //           )}
+  //         </div>
+  //       </div>
+  //     ) : (
+  //       <div className="mt-6 text-gray-500">No evaluation found. Please complete the questionnaire.</div>
+  //     )}
+  //   </div>
+  // );
+
+ return (
+  <div>
+    
+    {evaluation ? (
+      <EvaluationResult evaluation={evaluation} />
+      
+    ) : (
+      <div className="mt-6 text-gray-500">No evaluation found. Please complete the questionnaire.</div>
+    )}
+  </div>
+);
+
 }
 
 export default Page;

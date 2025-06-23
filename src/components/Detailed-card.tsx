@@ -10,8 +10,8 @@ type DetailedCardProps = {
 export default function DetailedCard({ company }: DetailedCardProps) {
 
   return (
-    <section className="w-full max-w-6xl mx-auto relative">
-      <div className="flex flex-col lg:flex-row gap-7">
+    <section className="w-full max-w-6xl mx-auto relative p-2">
+      <div className="flex flex-col lg:flex-row gap-2">
         <div className="w-full lg:w-1/2">
           <CompanyInfo company={company}/>
         </div>

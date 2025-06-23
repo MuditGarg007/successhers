@@ -86,7 +86,7 @@ export function Questionnare() {
       currentGoal: "",
     },
   });
-
+  
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setName(values.name);
     setEmail(values.email);
@@ -102,6 +102,8 @@ export function Questionnare() {
         body: JSON.stringify({ prompt: JSON.stringify(values, null, 2) }),
       });
       const data = await res.json();
+
+      console.log("Body::::", JSON.stringify(values, null, 2));
 
       if (!res.ok) {
         setError(data.error || "Failed to get evaluation.");
@@ -147,7 +149,7 @@ export function Questionnare() {
         }
       }
       setUserSkills(skills);
-
+      // console.log("skills", skills);
       setLoading(false);
       router.push("/dashboard/assessment/suggestedskills");
     } catch (err) {

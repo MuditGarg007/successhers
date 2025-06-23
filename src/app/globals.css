@@ -139,6 +139,10 @@
 }
 
 
+
+
+
+
 .detailelCard-bg {
 
   background: rgba(255, 119, 233, 0.04);       
@@ -151,10 +155,76 @@
 }
 
 
-/* .bg-card {
-  @apply bg-gradient-to-tr from-pink-500/30 to-transparent hover:from-pink-500/40;
-   border: 1px solid rgba(255, 255, 255, 0.3);
-} */
+.bg-needs-work {
+  background-image: linear-gradient(to right, rgba(255, 0, 0, 0.1), rgba(255, 0, 0, 0.3));
+
+}
+
+.skill-needs-work {
+  border: linear-gradient(to right, rgba(255, 0, 0, 0.1), rgba(255, 0, 0, 0.3));
+
+}
+.li-needs-work {
+   @apply border-red-950 bg-[rgba(255,0,0,0.1)];
+}
+
+.text-needs-work {
+  @apply text-red-800;
+}
+
+.circle-needs-work {
+  @apply from-red-400 to-red-600;
+
+}
+
+
+.bg-decent-skill {
+  background-image: linear-gradient(to right, rgba(255, 221, 0, 0.1), rgba(255, 193, 7, 0.3));
+
+}
+
+.skill-decent-skill {
+  border: linear-gradient(to right, rgba(255, 221, 0, 0.1), rgba(255, 193, 7, 0.3));
+
+}
+.li-decent-skill {
+   @apply border-yellow-900 bg-[rgba(255,193,7,0.1)];
+}
+
+.text-decent-skill {
+  @apply text-yellow-800;
+}
+
+.circle-decent-skill{
+  @apply from-yellow-400 to-yellow-600;
+
+}
+
+
+.bg-highly-skilled {
+  background-image: linear-gradient(to right, rgba(0, 200, 83, 0.1), rgba(0, 150, 50, 0.3));
+
+}
+
+
+.skill-highly-skilled {
+  border: linear-gradient(to right, rgba(0, 200, 83, 0.1), rgba(0, 150, 50, 0.3));
+
+}
+.li-highly-skilled {
+   @apply border-green-950 bg-[rgba(0,150,50,0.16)];
+}
+
+.text-highly-skilled {
+  @apply text-green-800;
+}
+
+.circle-highly-skilled {
+  @apply from-green-400 to-green-600;
+
+}
+
+
 .kirti-chat-window {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
@@ -168,43 +238,6 @@
   background: linear-gradient(to top right, rgba(255, 119, 233, 0.3), transparent);
   border: 1px solid rgba(255, 119, 233, 0.08); 
 }
-
-/* .bg-card {
- @apply bg-gradient-to-tr 
-         from-[#ff77e9]/30 via-[#ff4ecd]/20 to-[#ffc0f3]/10 
-         hover:from-[#ff77e9]/50 hover:via-[#ff4ecd]/30 hover:to-[#ffc0f3]/20
-         transition-all duration-300 
-         backdrop-blur-md 
-         border border-pink-300/10;
-@apply hover:shadow-[0_0_20px_2px_rgba(255,78,205,0.2)];
-} */
-
-
-/* .bg-card {
- @apply bg-gradient-to-tr 
-         from-[#ff77e9]/60 via-[#ff4ecd]/40 to-[#ffb0eb]/30 
-         hover:from-[#ff77e9]/80 hover:via-[#ff4ecd]/60 hover:to-[#ffb0eb]/40
-         transition-all duration-300 
-         backdrop-blur-lg 
-         border border-pink-400/20 
-         shadow-lg;
- @apply hover:shadow-[0_0_30px_6px_rgba(255,119,233,0.3)];
-} */
-
-/* 
-.bg-card {
-  @apply bg-gradient-to-tr 
-         from-[#C53678]/40 to-transparent
-         hover:from-[#C53678]/60 hover:to-transparent
-         backdrop-blur-md 
-         border border-pink-400/10 
-         transition-all duration-300;
-} */
-
-
-/* .bg-btn {
-  @apply bg-gradient-to-tr from-white/30 to-transparent
-} */
 
 
 
