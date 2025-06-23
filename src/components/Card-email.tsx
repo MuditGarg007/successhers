@@ -45,17 +45,20 @@ export function CardEmail({company}: CardEmailProps) {
    
  </div>
       </CardContent>
-      <CardFooter className="">
+      <CardFooter className="mt-[-1rem]">
        <div className="flex gap-3 ">
-             <a href="https://linkedin.com/company/example" target="_blank" rel="noopener noreferrer">
-               <Linkedin className="w-6 h-6 neon-icon"/>
-             </a>
-             <a href="https://twitter.com/example" target="_blank" rel="noopener noreferrer">
-               <Twitter className="w-6 h-6 neon-icon" /> 
-             </a>
-             <a href="https://glassdoor.com/example" target="_blank" rel="noopener noreferrer">
-               <Globe className="w-6 h-6 neon-icon"/>  
-             </a>
+             {company.socials?.linkedin && (
+              <a href={company.socials.linkedin} target="_blank" rel="noopener noreferrer">
+                <Linkedin className="w-6 h-6 neon-icon" />
+              </a>
+            )}
+
+            {company.socials?.twitter && (
+              <a href={company.socials.twitter} target="_blank" rel="noopener noreferrer">
+                <Twitter className="w-6 h-6 neon-icon" />
+              </a>
+            )}
+
            </div>
       </CardFooter>
 </Card>

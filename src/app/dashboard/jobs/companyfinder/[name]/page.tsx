@@ -15,6 +15,8 @@ export default function ExpandedCard({ params }: { params: Promise<{ name: strin
     return <div className="p-4 text-red-500">Company not found or data not loaded yet.</div>;
   }
 
+  // console.log("company::::", company);
+
   return (
     <div className="flex h-full w-full">
       <DetailedCard company={company} />
