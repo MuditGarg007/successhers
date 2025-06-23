@@ -30,12 +30,6 @@ const jobInterestItems = [
   { id: "other", label: "Other (please specify)" },
 ] as const;
 
-const hoursPerWeekItems = [
-  { id: "lt5", label: "Less than 5 hours" },
-  { id: "5to10", label: "5–10 hours" },
-  { id: "gt10", label: "10+ hours" },
-] as const;
-
 const goalItems = [
   { id: "first_job", label: "Get my first job" },
   { id: "upskill", label: "Change my field / upskill" },
@@ -49,7 +43,6 @@ const formSchema = z.object({
   experience: z.string(),
   interest: z.string(),
   skills: z.string(),
-  hours: z.string(),
   goal: z.string(),
   jobInterests: z
     .array(z.string())
@@ -58,7 +51,7 @@ const formSchema = z.object({
     }),
   otherJobInterest: z.string().optional(),
   hoursPerWeek: z
-    .string()
+    .number()
     .min(1, "Please select how many hours you can dedicate."),
   currentGoal: z.string().min(1, "Please select your current goal."),
 });
@@ -78,11 +71,10 @@ export function Questionnare() {
       experience: "",
       interest: "",
       skills: "",
-      hours: "",
       goal: "",
       jobInterests: [],
       otherJobInterest: "",
-      hoursPerWeek: "",
+      hoursPerWeek: 1,
       currentGoal: "",
     },
   });
@@ -90,7 +82,10 @@ export function Questionnare() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setName(values.name);
     setEmail(values.email);
-    setQuestionnaire(values);
+    setQuestionnaire({
+      ...values,
+      hoursPerWeek: String(values.hoursPerWeek),
+    });
     setLoading(true);
     setError(null);
 
@@ -122,10 +117,16 @@ export function Questionnare() {
           try {
             evaluation = JSON.parse(match[0]);
           } catch {
-            evaluation = { category: "Error", rationale: "Could not parse evaluation result." };
+            evaluation = {
+              category: "Error",
+              rationale: "Could not parse evaluation result.",
+            };
           }
         } else {
-          evaluation = { category: "Error", rationale: "Could not parse evaluation result." };
+          evaluation = {
+            category: "Error",
+            rationale: "Could not parse evaluation result.",
+          };
         }
       }
       localStorage.setItem("skillsEvaluation", JSON.stringify(evaluation));
@@ -141,7 +142,9 @@ export function Questionnare() {
             if (Array.isArray(arr)) {
               skills = arr;
             } else {
-              skills = evaluation.skills.split(",").map((s: string) => s.trim());
+              skills = evaluation.skills
+                .split(",")
+                .map((s: string) => s.trim());
             }
           } catch {
             skills = evaluation.skills.split(",").map((s: string) => s.trim());
@@ -315,19 +318,23 @@ export function Questionnare() {
             name="hoursPerWeek"
             render={({ field }) => (
               <FormItem>
-                <div className="mb-4">
-                  <FormLabel className="text-base">
-                    How many hours per week can you dedicate to learning?
-                  </FormLabel>
-                </div>
-                <RadioGroup onValueChange={field.onChange} value={field.value}>
-                  {hoursPerWeekItems.map((item) => (
-                    <div className="flex items-center space-x-2" key={item.id}>
-                      <RadioGroupItem value={item.id} id={`hours-${item.id}`} />
-                      <Label htmlFor={`hours-${item.id}`}>{item.label}</Label>
-                    </div>
-                  ))}
-                </RadioGroup>
+                <FormLabel>
+                  How many hours per week can you dedicate to work?
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    type="number"
+                    min={1}
+                    placeholder="Enter number of hours"
+                    {...field}
+                    value={field.value ?? ""}
+                    onChange={(e) =>
+                      field.onChange(
+                        e.target.value === "" ? "" : Number(e.target.value)
+                      )
+                    }
+                  />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
