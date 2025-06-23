@@ -35,8 +35,8 @@ In India, despite the growing need for gender-inclusive workforces, millions of 
 
 1. **Clone the repository:**
    ```bash
-   git clone <repo-url>
-   cd SuccessHers
+   git clone https://github.com/MuditGarg007/successhers.git
+   cd successhers
    ```
 2. **Install dependencies:**
    ```bash
